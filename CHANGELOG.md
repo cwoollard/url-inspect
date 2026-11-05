@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.1 — Unreleased
+
+- Update the pinned Rust toolchain to 1.99.1.
+
 ## 0.1.0 — Unreleased
 
 - Inspect enforced/report-only CSP headers and HTML CSP meta tags.

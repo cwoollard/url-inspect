@@ -25,8 +25,8 @@ If your organisation restricts GitHub Actions, allow the official checkout, uplo
 3. Commit and push, then push a matching version tag:
 
    ```sh
-   git tag v0.1.0
-   git push origin v0.1.0
+   git tag v0.1.1
+   git push origin v0.1.1
    ```
 
 4. The draft-release workflow checks the tag against the Cargo version, tests/builds macOS ARM64, macOS Intel and Linux x86_64 musl, and produces binary archives, a source-only archive and `SHA256SUMS`.
@@ -37,14 +37,14 @@ The initial workflow does not produce Windows or Linux ARM64 release assets. CI 
 After publishing, users with a matching platform can install the binary through mise:
 
 ```sh
-mise use -g github:OWNER/url-inspect@0.1.0
+mise use -g github:OWNER/url-inspect@0.1.1
 ```
 
 Before publishing binary releases, users with Rust and repository access can install from the Git tag:
 
 ```sh
 mise use -g rust@stable
-mise use -g 'cargo:https://github.com/OWNER/url-inspect@tag:v0.1.0'
+mise use -g 'cargo:https://github.com/OWNER/url-inspect@tag:v0.1.1'
 ```
 
 No custom mise plugin is required. A source archive alone is not an installable binary asset for mise's GitHub backend.
@@ -55,4 +55,4 @@ No custom mise plugin is required. A source archive alone is not an installable 
 mise run source-archive
 ```
 
-This creates `dist/url-inspect-v0.1.0-source.tar.gz` using Python 3. It includes project sources, tests, documentation, mise/toolchain files, packaging scripts and GitHub workflows. Build outputs, Git history, environment files and machine-specific mise settings are excluded. The archive has a single `url-inspect/` top-level directory.
+This creates `dist/url-inspect-v0.1.1-source.tar.gz` using Python 3. It includes project sources, tests, documentation, mise/toolchain files, packaging scripts and GitHub workflows. Build outputs, Git history, environment files and machine-specific mise settings are excluded. The archive has a single `url-inspect/` top-level directory.

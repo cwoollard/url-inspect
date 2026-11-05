@@ -14,7 +14,7 @@ mise run build
 mise run run -- https://example.com --csp --headers --cert --tls
 ```
 
-`mise.toml` selects Rust 1.98.0 and provides build, formatting, lint, test, run and source-archive tasks. Run `mise tasks` to list them. `rust-toolchain.toml` selects the same toolchain for Cargo/rustup users without mise.
+`mise.toml` selects Rust 1.99.1 and provides build, formatting, lint, test, run and source-archive tasks. Run `mise tasks` to list them. `rust-toolchain.toml` selects the same toolchain for Cargo/rustup users without mise.
 
 Or use Cargo directly:
 
@@ -117,11 +117,11 @@ This uses mise to select Rust and installs the executable through Cargo. It is n
 
 ### Install through mise from Git (no crates.io publishing required)
 
-Push the standalone repository and create/push a `v0.1.0` tag. Users can then build it from Git using mise's Cargo backend:
+Push the standalone repository and create/push a `v0.1.1` tag. Users can then build it from Git using mise's Cargo backend:
 
 ```sh
 mise use -g rust@stable
-mise use -g 'cargo:https://github.com/OWNER/url-inspect@tag:v0.1.0'
+mise use -g 'cargo:https://github.com/OWNER/url-inspect@tag:v0.1.1'
 url-inspect --version
 ```
 
@@ -132,9 +132,9 @@ This requires Rust and a linker on the installing machine. For private repositor
 For users who should not need Rust installed, publish a GitHub Release with platform-specific archives containing the executable. For example:
 
 ```text
-url-inspect-v0.1.0-aarch64-apple-darwin.tar.gz
-url-inspect-v0.1.0-x86_64-apple-darwin.tar.gz
-url-inspect-v0.1.0-x86_64-unknown-linux-musl.tar.gz
+url-inspect-v0.1.1-aarch64-apple-darwin.tar.gz
+url-inspect-v0.1.1-x86_64-apple-darwin.tar.gz
+url-inspect-v0.1.1-x86_64-unknown-linux-musl.tar.gz
 ```
 
 Each archive should contain `url-inspect` with its executable bit set. The draft-release workflow builds/tests these three targets and attaches checksums. Only the current Mac build has been verified locally; hosted builds run after the project is pushed to GitHub. The separate CI workflow also tests Windows source builds.
@@ -142,7 +142,7 @@ Each archive should contain `url-inspect` with its executable bit set. The draft
 Users can then run:
 
 ```sh
-mise use -g github:OWNER/url-inspect@0.1.0
+mise use -g github:OWNER/url-inspect@0.1.1
 ```
 
 A release tag alone is insufficient for this route: mise needs compatible binary assets attached to the release. No custom mise plugin or central registry entry is required when using the explicit backend name. See the official [Cargo backend](https://mise.jdx.dev/dev-tools/backends/cargo.html) and [GitHub backend](https://mise.jdx.dev/dev-tools/backends/github.html) documentation.
@@ -152,7 +152,7 @@ A release tag alone is insufficient for this route: mise needs compatible binary
 If you later publish the crate under this exact name (check name availability first):
 
 ```sh
-mise use -g cargo:url-inspect@0.1.0
+mise use -g cargo:url-inspect@0.1.1
 ```
 
 For an initial Homebrew tap, use `packaging/url-inspect.rb.example`. Replace the repository URL and release checksum, then commit it as `Formula/url-inspect.rb` in a tap repository. It builds from source with Cargo; prebuilt binaries can be added later.
