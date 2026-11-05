@@ -1,0 +1,9 @@
+/target/
+/dist/
+.DS_Store
+__pycache__/
+*.pyc
+.env
+.env.*
+.mise.local.toml
+mise.local.toml

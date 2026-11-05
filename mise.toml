@@ -1,0 +1,42 @@
+[tools]
+rust = "1.98.0"
+
+[tasks.build]
+description = "Build the release executable"
+run = "cargo build --release --locked"
+
+[tasks.dev]
+description = "Build the debug executable"
+run = "cargo build --locked"
+
+[tasks.run]
+description = "Run the CLI; pass arguments after --"
+run = "cargo run --locked --"
+
+[tasks.fmt]
+description = "Format Rust source"
+run = "cargo fmt --all"
+
+[tasks.fmt-check]
+description = "Check Rust formatting"
+run = "cargo fmt --all --check"
+
+[tasks.lint]
+description = "Run Clippy with warnings treated as errors"
+run = "cargo clippy --locked --all-targets -- -D warnings"
+
+[tasks.test]
+description = "Run unit and local HTTP integration tests"
+run = "cargo test --locked"
+
+[tasks.check]
+description = "Run formatting, Clippy and tests"
+run = [
+  "cargo fmt --all --check",
+  "cargo clippy --locked --all-targets -- -D warnings",
+  "cargo test --locked",
+]
+
+[tasks.source-archive]
+description = "Create a source-only tar.gz in dist/ (requires Python 3)"
+run = "python3 scripts/source_archive.py"
