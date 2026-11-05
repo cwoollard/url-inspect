@@ -81,7 +81,7 @@ Authentication headers are not logged, but command arguments may be visible in s
 - Each redirect hop, HTTP status and Location. Up to ten redirects are followed by default; use `--max-redirects N` or `--no-follow`.
 - Every enforced and report-only CSP response header as a separate policy.
 - CSP meta elements in the HTML head (case-insensitive `http-equiv` matching).
-- Each policy's UTF-8 byte count, with a notice above the ALB header attribute's 1,024-byte limit. This limit does not apply universally to application-supplied CSPs. Meta attributes are entity-decoded before counting.
+- Each policy's UTF-8 byte count. Meta attributes are entity-decoded before counting.
 - Optional TLS **leaf** certificate information for each HTTPS response. Full certificate-chain inspection is not implemented. Expiry is displayed as a readable duration down to minutes, without a leading “in” (seconds are shown for durations below one minute), with expired certificates explicitly labelled. Months use 30 days and years use 365 days; the exact expiry date is also shown. JSON includes both `expiry` and `seconds_until_expiry`.
 
 TLS hostname and chain validation is enabled by default. `valid_now` in certificate output refers only to the certificate's validity dates; it is not a separate chain-validation result. Request failures are errors, even when certificate display is requested. To inspect an expired/untrusted certificate, explicitly use `--insecure`.
@@ -117,11 +117,11 @@ This uses mise to select Rust and installs the executable through Cargo. It is n
 
 ### Install through mise from Git (no crates.io publishing required)
 
-Push the standalone repository and create/push a `v0.1.1` tag. Users can then build it from Git using mise's Cargo backend:
+Push the standalone repository and create/push a `v0.1.2` tag. Users can then build it from Git using mise's Cargo backend:
 
 ```sh
 mise use -g rust@stable
-mise use -g 'cargo:https://github.com/OWNER/url-inspect@tag:v0.1.1'
+mise use -g 'cargo:https://github.com/OWNER/url-inspect@tag:v0.1.2'
 url-inspect --version
 ```
 
@@ -132,9 +132,9 @@ This requires Rust and a linker on the installing machine. For private repositor
 For users who should not need Rust installed, publish a GitHub Release with platform-specific archives containing the executable. For example:
 
 ```text
-url-inspect-v0.1.1-aarch64-apple-darwin.tar.gz
-url-inspect-v0.1.1-x86_64-apple-darwin.tar.gz
-url-inspect-v0.1.1-x86_64-unknown-linux-musl.tar.gz
+url-inspect-v0.1.2-aarch64-apple-darwin.tar.gz
+url-inspect-v0.1.2-x86_64-apple-darwin.tar.gz
+url-inspect-v0.1.2-x86_64-unknown-linux-musl.tar.gz
 ```
 
 Each archive should contain `url-inspect` with its executable bit set. The draft-release workflow builds/tests these three targets and attaches checksums. Only the current Mac build has been verified locally; hosted builds run after the project is pushed to GitHub. The separate CI workflow also tests Windows source builds.
@@ -142,7 +142,7 @@ Each archive should contain `url-inspect` with its executable bit set. The draft
 Users can then run:
 
 ```sh
-mise use -g github:OWNER/url-inspect@0.1.1
+mise use -g github:OWNER/url-inspect@0.1.2
 ```
 
 A release tag alone is insufficient for this route: mise needs compatible binary assets attached to the release. No custom mise plugin or central registry entry is required when using the explicit backend name. See the official [Cargo backend](https://mise.jdx.dev/dev-tools/backends/cargo.html) and [GitHub backend](https://mise.jdx.dev/dev-tools/backends/github.html) documentation.
@@ -152,7 +152,7 @@ A release tag alone is insufficient for this route: mise needs compatible binary
 If you later publish the crate under this exact name (check name availability first):
 
 ```sh
-mise use -g cargo:url-inspect@0.1.1
+mise use -g cargo:url-inspect@0.1.2
 ```
 
 For an initial Homebrew tap, use `packaging/url-inspect.rb.example`. Replace the repository URL and release checksum, then commit it as `Formula/url-inspect.rb` in a tap repository. It builds from source with Cargo; prebuilt binaries can be added later.

@@ -665,17 +665,6 @@ fn write_report(report: &Report, json: bool, colour: bool, mut out: impl Write) 
                         values
                     )?;
                 }
-                if policy.bytes > 1024 {
-                    writeln!(
-                        out,
-                        "{}",
-                        paint(
-                            "  Exceeds the ALB header-attribute limit of 1024 bytes (not a general CSP limit).",
-                            "33",
-                            colour
-                        )
-                    )?;
-                }
             }
         }
         if let Some(cert) = &hop.certificate {

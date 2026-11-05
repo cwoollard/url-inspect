@@ -2,7 +2,7 @@
 class UrlInspect < Formula
   desc "Inspect a URL's Content Security Policies and TLS certificate"
   homepage "https://github.com/OWNER/REPO"
-  url "https://github.com/OWNER/REPO/archive/refs/tags/v0.1.1.tar.gz"
+  url "https://github.com/OWNER/REPO/archive/refs/tags/v0.1.2.tar.gz"
   sha256 "REPLACE_WITH_RELEASE_ARCHIVE_SHA256"
   license "MIT"
 
@@ -13,6 +13,6 @@ class UrlInspect < Formula
   end
 
   test do
-    assert_match "url-inspect 0.1.1", shell_output("#{bin}/url-inspect --version")
+    assert_match "url-inspect 0.1.2", shell_output("#{bin}/url-inspect --version")
   end
 end

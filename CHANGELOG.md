@@ -1,6 +1,10 @@
 # Changelog
 
-## 0.1.1 — Unreleased
+## 0.1.2 — Unreleased
+
+- Remove the AWS ALB limit warning from CSP reports, where it may not apply.
+
+## 0.1.1
 
 - Update the pinned Rust toolchain to 1.99.1.
 
